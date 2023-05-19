@@ -117,6 +117,95 @@ class Animal
             exit;
         }
     }
+
+    public static function existeNome($nome)
+    {
+        try {
+            $conexao = Conexao::getConexao();
+            $stmt = $conexao->prepare(
+                "SELECT COUNT(*) FROM animais WHERE nome = ?"
+            );
+            $stmt->execute([$nome]);
+
+            $quantidade = $stmt->fetchColumn();
+            if ($quantidade > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }   catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+    }
+
+    public static function existeTel($telDono)
+    {
+        try {
+            $conexao = Conexao::getConexao();
+            $stmt = $conexao->prepare(
+                "SELECT COUNT(*) FROM animais WHERE telDono = ?"
+            );
+            $stmt->execute([$telDono]);
+
+            $quantidade = $stmt->fetchColumn();
+            if ($quantidade > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }   catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+    }
+
+    public static function listarPorRaca($raca)
+    {
+        try {
+            $conexao = Conexao::getConexao();
+            $stmt = $conexao->prepare(
+                "SELECT * FROM animais WHERE raca = ? ORDER BY nome"
+            );
+            $stmt->execute([$raca]);
+
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+    }
+
+    public static function listarPorTelefone($telDono)
+    {
+        try {
+            $conexao = Conexao::getConexao();
+            $stmt = $conexao->prepare(
+                "SELECT * FROM animais WHERE telDono = ? ODER BY nome"
+            );
+            $stmt->execute([$telDono]);
+
+            return $stmt->fetchAll();
+        }   catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+    }
+
+    public static function listarPorFuncionario($idFuncionario) {
+        try {
+            $con = Conexao::getConexao();
+            $stmt = $conexao->prepare(
+                "SELECT a.* FROM animais a INNER JOIN atende at ON at.idAnimal = a.id WHERE at.idFuncionario = ?"
+            );
+            $stmt->execute([$idFuncionario]);
+
+            return $stmt->fetchAll();
+        }   catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+    }
 }
 
 ?>
