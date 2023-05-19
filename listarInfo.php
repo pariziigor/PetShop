@@ -16,7 +16,7 @@
     <div class="topnav">
         <a class="active" href="index.php">Cadastro</a>
         <a href="listarInfo.php">Listar Info</a>
-        <a href="editarInfo.php">Editar Info</a>
+        <a href="editarFuncionario.php">Editar Funcionário</a>
     </div>
 
     <h2>Tabela de funcionários cadastrados</h2>
@@ -36,8 +36,13 @@
                 echo "<td>" . $funcionario["id"] . "</td>";
                 echo "<td>" . $funcionario["nome"] . "</td>";
                 echo "<td>" . $funcionario["email"] . "</td>";
+                echo "<td>" . $funcionario["datacadastro"] . "</td>";
                 $id = $funcionario["id"];
-                echo "</tr>";
+                echo "<td>
+                <a href='editarFuncionario.php?id=$id'>EDITAR</a>
+            </td>";
+            echo "</tr>";
+            echo "</tr>";
             }
             ?>
             </tbody>
@@ -62,8 +67,13 @@
                 echo "<td>" . $animal["nome"] . "</td>";
                 echo "<td>" . $animal["raca"] . "</td>";
                 echo "<td>" . $animal["telDono"] . "</td>";
+                echo "<td>" . $animal["datacadastro"] . "</td>";
                 $id = $animal["id"];
-                echo "</tr>";
+                echo "<td>
+                <a href='editarAnimal.php?id=$id'>EDITAR</a>
+            </td>";
+            echo "</tr>";
+            echo "</tr>";
             }
             ?>
             </tbody>

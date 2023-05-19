@@ -50,9 +50,9 @@
     ?>
 
     <div class="topnav">
-      <a class="active" href="index.php">Cadastro</a>
-      <a href="listarInfo.php">Listar Info</a>
-      <a href="editarInfo.php">Editar Info</a>
+        <a class="active" href="index.php">Cadastro</a>
+        <a href="listarInfo.php">Listar Info</a>
+        <a href="editarFuncionario.php">Editar Funcionário</a>
     </div>
 
     <h1>Cadastro de Funcionário</h1>
