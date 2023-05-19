@@ -194,7 +194,7 @@ class Animal
 
     public static function listarPorFuncionario($idFuncionario) {
         try {
-            $con = Conexao::getConexao();
+            $conexao = Conexao::getConexao();
             $stmt = $conexao->prepare(
                 "SELECT a.* FROM animais a INNER JOIN atende at ON at.idAnimal = a.id WHERE at.idFuncionario = ?"
             );
