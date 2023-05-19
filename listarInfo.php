@@ -18,12 +18,16 @@
     <div class="topnav">
         <a class="active" href="index.php">Cadastro</a>
         <a href="listarInfo.php">Listar Info</a>
+        <a href="atendeFunc.php">Atende Func</a>
+        <a href="animalTel.php">Atende por Tel</a>
+        <a href="animalRaca.php">Animais pela Raça</a>
     </div>
 
     <h2>Tabela de funcionários cadastrados</h2>
         <table>
             <thead>
                 <tr>
+                    <table border='1'>
                     <th>ID</th>
                     <th>Nome</th>
                     <th>Login</th>
@@ -54,6 +58,7 @@
         <table>
             <thead>
                 <tr>
+                    <table border='1'>
                     <th>ID</th>
                     <th>Nome</th>
                     <th>Raça</th>
@@ -86,6 +91,7 @@
         <table>
             <thead>
                 <tr>
+                    <table border='1'>
                     <th>ID</th>
                     <th>ID Funcionário</th>
                     <th>ID Animal</th>

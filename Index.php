@@ -72,6 +72,9 @@
     <div class="topnav">
         <a class="active" href="index.php">Cadastro</a>
         <a href="listarInfo.php">Listar Info</a>
+        <a href="atendeFunc.php">Atende Func</a>
+        <a href="animalTel.php">Atende por Tel</a>
+        <a href="animalRaca.php">Animais pela Raça</a>
     </div>
 
     <h1>Cadastro de Funcionário</h1>
