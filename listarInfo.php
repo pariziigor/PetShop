@@ -17,6 +17,7 @@
         <a class="active" href="index.php">Cadastro</a>
         <a href="listarInfo.php">Listar Info</a>
         <a href="editarFuncionario.php">Editar Funcionário</a>
+        <a href="editarAnimal.php">Editar Animal</a>
     </div>
 
     <h2>Tabela de funcionários cadastrados</h2>
