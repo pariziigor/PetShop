@@ -12,13 +12,12 @@
     require_once "configs/utils.php";
     require_once "model/Animal.php";
     require_once "model/Funcionario.php";
+    require_once "model/Atende.php";
     ?>
 
     <div class="topnav">
         <a class="active" href="index.php">Cadastro</a>
         <a href="listarInfo.php">Listar Info</a>
-        <a href="editarFuncionario.php">Editar Funcionário</a>
-        <a href="editarAnimal.php">Editar Animal</a>
     </div>
 
     <h2>Tabela de funcionários cadastrados</h2>
@@ -38,10 +37,11 @@
                 echo "<td>" . $funcionario["id"] . "</td>";
                 echo "<td>" . $funcionario["nome"] . "</td>";
                 echo "<td>" . $funcionario["email"] . "</td>";
-                echo "<td>" . $funcionario["datacadastro"] . "</td>";
+                echo "<td>" . $funcionario["dataCadastro"] . "</td>";
                 $id = $funcionario["id"];
                 echo "<td>
                 <a href='editarFuncionario.php?id=$id'>EDITAR</a>
+                <a href='removerDados.php?id=$id'>REMOVER</a>
             </td>";
             echo "</tr>";
             echo "</tr>";
@@ -69,15 +69,45 @@
                 echo "<td>" . $animal["nome"] . "</td>";
                 echo "<td>" . $animal["raca"] . "</td>";
                 echo "<td>" . $animal["telDono"] . "</td>";
-                echo "<td>" . $animal["datacadastro"] . "</td>";
+                echo "<td>" . $animal["dataCadastro"] . "</td>";
                 $id = $animal["id"];
                 echo "<td>
                 <a href='editarAnimal.php?id=$id'>EDITAR</a>
+                <a href='removerDados.php?id=$id'>REMOVER</a>
             </td>";
             echo "</tr>";
             echo "</tr>";
             }
             ?>
+            </tbody>
+        </table>
+        
+    <h2>Tabela de Atendimentos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ID Funcionário</th>
+                    <th>ID Animal</th>
+                    <th>Cadastrado em:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $lista = Atende::listar();
+                foreach ($lista as $atende) {
+                    echo "<tr>";
+                    echo "<td>" . $atende["id"] . "</td>";
+                    echo "<td style='text-align:center'>" . $atende["idFuncionario"] . "</td>";
+                    echo "<td style='text-align:center'>" . $atende["idAnimal"] . "</td>";
+                    echo "<td>" . $atende["data"] . "</td>";
+                    $id = $atende["id"];
+                    echo "<td>
+                    <a href='removerDados.php?id=$id'>REMOVER</a>
+                    </td>";
+                    echo "</tr>";
+                }
+                ?>
             </tbody>
         </table>
 </body>

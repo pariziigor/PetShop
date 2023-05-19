@@ -13,6 +13,7 @@
     require_once "configs/utils.php";
     require_once "model/Animal.php";
     require_once "model/Funcionario.php";
+    require_once "model/Atende.php";
     
     $funcionario = null;
 
@@ -56,8 +57,6 @@
     <div class="topnav">
         <a class="active" href="index.php">Cadastro</a>
         <a href="listarInfo.php">Listar Info</a>
-        <a href="editarFuncionario.php">Editar Funcionário</a>
-        <a href="editarAnimal.php">Editar Animal</a>
     </div>
 
     <h1>Editando as informações de <?= $funcionario["nome"]?></h1>

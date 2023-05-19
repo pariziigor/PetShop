@@ -13,6 +13,7 @@
     require_once "configs/utils.php";
     require_once "model/Animal.php";
     require_once "model/Funcionario.php";
+    require_once "model/Atende.php";
 
     if (isMetodo("POST")) {
         // Cadastro de Funcionário
@@ -48,13 +49,29 @@
             }
         }
     }
+
+    if (parametrosValidos($_POST, ["idFuncionario", "idAnimal"])) {
+        // Fazer checagens avançadas...
+        $idFuncionario = $_POST["idFuncionario"];
+        $idAnimal = $_POST["idAnimal"];
+        $data = date('Y-m-d H:i:s');
+
+        
+        if (!Atende::existeAtende($idFuncionario, $idAnimal) && Funcionario::existeId($idFuncionario) && Animal::existeId($idAnimal)) {
+            if (Atende::cadastrar($idFuncionario, $idAnimal, $data)) {
+                echo "<p>O atendimento foi cadastrado com sucesso!</p>";
+            } else {
+                echo "<p>Erro ao cadastrar o atendimento</p>";
+            }
+        } else {
+            echo "<p>Já existe esse id no sistema!</p>";
+        }
+    }
     ?>
 
     <div class="topnav">
         <a class="active" href="index.php">Cadastro</a>
         <a href="listarInfo.php">Listar Info</a>
-        <a href="editarFuncionario.php">Editar Funcionário</a>
-        <a href="editarAnimal.php">Editar Animal</a>
     </div>
 
     <h1>Cadastro de Funcionário</h1>
@@ -75,6 +92,16 @@
         <input type="text" name="raca" required>
         <p>Digite o telefone do dono</p>
         <input type="tel" name="telDono" placeholder="(xx)xxxx-xxxx">
+        <br><br>
+        <button>Cadastrar</button>
+    </form>
+
+    <h1>Cadastro de Atendimento</h1>
+    <form method="POST">
+    <p>Digite o ID do funcionário</p>
+        <input type="number" name="idFuncionario" required>
+        <p>Digite o ID do animal</p>
+        <input type="number" name="idAnimal" required>
         <br><br>
         <button>Cadastrar</button>
     </form>

@@ -13,7 +13,8 @@
     require_once "configs/utils.php";
     require_once "model/Animal.php";
     require_once "model/Funcionario.php";
-    
+    require_once "model/Atende.php";
+
     $animal = null;
 
     if (isMetodo("POST")) {
@@ -24,12 +25,12 @@
                 echo "<a href='index.php'>Voltar ao index</a>";
                 die;
             } else {
-                echo "<h1>Erro ao editar o animal</h1>";
+                echo "<h1>Erro ao editar o animal!</h1>";
                 echo "<a href='index.php'>Voltar ao index</a>";
                 die;
             }
-        }   else {
-            echo "<h1>Problema na requisição de editar</h1>";
+        } else {
+            echo "<h1>Problemas na requisição de editar</h1>";
             echo "<a href='index.php'>Voltar ao index</a>";
             die;
         }
@@ -39,38 +40,32 @@
         if (parametrosValidos($_GET, ["id"])) {
             $id = $_GET["id"];
             if (Animal::existeId($id)) {
-                $funcionario = Animal::getAnimalById($id);
+                $animal = Animal::getAnimalById($id);
             } else {
-                echo "<h1>Este animal não existe mais!</h1>";
+                echo "<h1>Este animal não existe</h1>";
                 echo "<a href='index.php'>Voltar ao index</a>";
                 die;
             }
         } else {
-            echo "<h1>Você deve dizer qual animal será editado!</h1>";
+            echo "<h1>Você deve dizer qual é o animal a ser editado</h1>";
             echo "<a href='index.php'>Voltar ao index</a>";
             die;
         }
     }
     ?>
 
-    <div class="topnav">
-        <a class="active" href="index.php">Cadastro</a>
-        <a href="listarInfo.php">Listar Info</a>
-        <a href="editarFuncionario.php">Editar Funcionário</a>
-        <a href="editarAnimal.php">Editar Animal</a>
-    </div>
-
-    <h1>Editando as informações de <?= $Animal["nome"]?></h1>
+    <h1>Editando as informações de <?= $animal["nome"] ?></h1>
 
     <form method="POST">
-        <p>Digite o nome: </p>
-        <input type="text" name="nome" value="<?= $Animal["nome"] ?>"required>
-        <p>Digite o raca: </p>
-        <input type="text" name="raca" value="<?= $Animal["raca"] ?>"required>
-        <p>Digite o telefone: </p>
-        <input type="tel" name="telDono" value="<?= $Animal["telDono"] ?>"required>
-        <input type="hidden" name="id" value="<?= $Animal["id"] ?>"required>
+        <p>Digite o nome</p>
+        <input type="text" name="nome" value="<?= $animal["nome"] ?>" required>
+        <p>Digite a raça</p>
+        <input type="text" name="raca" value="<?= $animal["raca"] ?>" required>
+        <p>Digite o telefone do dono</p>
+        <input type="tel" name="telDono" value="<?= $animal["telDono"] ?>" required>
+        <input type="hidden" name="id" value="<?= $animal["id"] ?>">
         <br>
         <button>Editar</button>
     </form>
 </body>
+</html>
