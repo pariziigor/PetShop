@@ -138,6 +138,59 @@ class Funcionario
             exit;
         }
     }
+
+    public static function existeEmail($email)
+    {
+        try{
+            $conexao = Conexao::getConexao();
+            $stmt = $conexao->prepare(
+                "SELECT COUNT(*) FROM funcionarios WHERE email = ?"
+            );
+            $stmt->execute([$email]);
+
+            $quantidade = $stmt->fetchColumn();
+            if ($quantidade > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }   catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+    }
+
+    public static function existeNome($nome)
+    {
+        try{
+            $conexao = Conexao::getConexao();
+            $stmt = $conexao->prepare(
+                "SELECT COUNT(*) FROM funcionarios WHERE nome = ?"
+            );
+            $stmt->execute([$nome]);
+
+            return $stmt->fetchAll()[0];
+        }   catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+    }
+
+    public static function listarPorAnimal($idAnimal)
+    {
+        try {
+            $conexao = Conexao::getConexao();
+            $stmt = $conexao->prepare(
+                "SELECT f.id, f.nome, f.email FROM funcionario f INNER JOIN atende a ON f.id = a.idFuncionario WHERE a.idAnimal = ?"
+            );
+            $stmt->execute([$idAnimal]);
+
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit;
+        }
+    }
 }
 
 ?>
